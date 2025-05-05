@@ -22,29 +22,33 @@ public class AfterHammerSwing implements Runnable {
     @Override
     public void run() {
         // 500ms 후 실행되는 타이머를 생성하여 게임 상태를 처리합니다.
-        new Timer(500, e -> {
+        new Timer(200, e -> {
             // 타이머 중지
             ((Timer) e.getSource()).stop();
 
             // 게임 종료 여부 체크
             if (GameManager.getInst().endCheck()) {
                 // 게임 종료 처리
-                new Timer(500, f -> {
+                new Timer(1000, f -> {
                     // 타이머 중지
                     ((Timer) f.getSource()).stop();
                     // 게임 종료 후 실행되는 코드 호출
                     GamePanel.onGameEnd.run();
                 }).start();
             } else {
-                // 게임이 종료되지 않으면, 아이스 브레이크를 처리하고 버튼을 활성화
-                new Timer(500, f -> {
-                    // 타이머 중지
-                    ((Timer) f.getSource()).stop();
-                    // 아이스 브레이크 상태를 무시하고 아이스 상태 갱신
-                    IceManager.getInst().irrelevantIceBreak();
+                // 펭귄과 연관없는 얼음 구역 부숨
+                if(IceManager.getInst().irrelevantIceBreak()){
+                    // 연관없는 구역이 있다면 딜레이를 주고 버튼 활성화(얼음이 부서지는 동안 그 얼음을 해머로 치지않기위함)
+                    new Timer(200, f -> {
+                        ((Timer) f.getSource()).stop();
+                        GamePanel.button.setEnabled(true);
+                    }).start();
+                }else{
                     // 게임 버튼 활성화
                     GamePanel.button.setEnabled(true);
-                }).start();
+                }
+               
+                
             }
         }).start();
     }

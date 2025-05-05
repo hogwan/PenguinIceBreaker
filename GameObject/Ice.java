@@ -173,7 +173,7 @@ public class Ice extends GameObject implements Drawable {
      */
     private void startBounceAnimation(int damage) {
         new Timer(1000 / GameSetting.FPS, e -> {
-            theta += 900.0 * GameSetting.DELTATIME;
+            theta += GameSetting.IMPACTSPEED * GameSetting.DELTATIME;
             double offset = -GameSetting.IMPACTAMPLITUDE * Math.sin(theta);
             getPoint().setYOffset((int) offset);
 

@@ -183,7 +183,7 @@ public class IceManager {
     /**
      * 유효하지 않은 얼음들을 깨뜨립니다.
      */
-    public void irrelevantIceBreak() {
+    public boolean irrelevantIceBreak() {
         ArrayList<Penguin> list = GameManager.getInst().getAlivePenguins();
         int[][] visited = new int[GameSetting.MAP_SIZE_Y + 2][GameSetting.MAP_SIZE_X + 2]; // 방문 여부 배열
 
@@ -202,6 +202,12 @@ public class IceManager {
                 }
             }
         }
+
+        // 관련없는 얼음 구역이 있으면 true 없으면 false
+        if (list.size() == 0)
+            return false;
+        else
+            return true;
     }
 
     /**
