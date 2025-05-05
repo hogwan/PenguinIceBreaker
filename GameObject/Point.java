@@ -134,8 +134,8 @@ public class Point {
      */
     public Point getPosition() {
         // y와 x를 기반으로 그리기 위한 위치 계산
-        int drawY = getY() * GameSetting.HEX_HEIGHT * 2 / 3 + yOffset;
-        int drawX = getX() * GameSetting.HEX_SIZE + (isOdd() ? GameSetting.HEX_SIZE / 2 : 0) + xOffset;
+        int drawY = GameSetting.YMARGIN + getY() * GameSetting.HEX_HEIGHT * 2 / 3 + yOffset;
+        int drawX = GameSetting.XMARGIN + getX() * GameSetting.HEX_SIZE + (isOdd() ? GameSetting.HEX_SIZE / 2 : 0) + xOffset;
 
         // 계산된 위치로 새 Point 객체 반환
         return new Point(drawY, drawX);

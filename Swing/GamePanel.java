@@ -43,8 +43,13 @@ public class GamePanel extends JPanel {
         button.setFocusPainted(false); // 버튼에 포커스 표시 제거
         button.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2, true)); // 버튼 테두리 설정
         button.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 커서 설정 (손 모양)
+        button.setBounds(GameSetting.XMARGIN + GameSetting.HEX_SIZE * (GameSetting.MAP_SIZE_X + 1),
+                GameSetting.YMARGIN +GameSetting.HEX_HEIGHT * (GameSetting.MAP_SIZE_Y / 2 - 1),
+                GameSetting.HEX_SIZE * 4,
+                GameSetting.HEX_HEIGHT);   //버튼 위치, 크기 설정
 
         // 버튼을 패널에 추가
+        setLayout(null);
         add(button);
 
         // 게임 화면을 주기적으로 업데이트하기 위한 타이머 설정

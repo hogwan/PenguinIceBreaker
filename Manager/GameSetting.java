@@ -25,4 +25,6 @@ public class GameSetting {
     public static final int IMPACTSPEED = 900;
     public static final int PENGUINYOFFSET = -20;
     public static final double HAMMERDELAY = 1.4;
+    public static final int YMARGIN = 20;
+    public static final int XMARGIN = 10;
 }
